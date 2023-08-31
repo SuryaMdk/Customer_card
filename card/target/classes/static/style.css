@@ -1,0 +1,53 @@
+@charset "ISO-8859-1";
+/*
+style.css
+This file for home.html 
+
+Author: Surya prakash
+Contact: suryamdk5@gmail.com
+
+created on: 2023-08-30
+*/
+
+
+@media screen and (min-width: 990px){
+	.container{
+		padding:0 10%;
+	}
+}
+
+.head1{
+	 text-align:center;
+	 width:100%;
+	 margin:20px auto;
+	 font-family: 'Montserrat', sans-serif;
+}
+
+.card{
+	box-shadow:5px 5px 10px grey;
+	transition: transform 0.3s,box-shadow 0.3s;
+}
+.card:hover{
+	transform: scale(1.07);
+	box-shadow: 0 8px 16px grey;
+}
+
+.button{
+	border-radius:5px;
+	font-family: 'Montserrat', sans-serif;
+}
+.card-item{
+	font-size:15px;
+	line-height:1;
+}
+.card-phone{
+	margin:auto auto 0;
+	line-height:1.2;
+}
+.card-email{
+	font-size:13px;
+	line-height:2;
+}
+.card-address{
+	font-size:14px;
+}

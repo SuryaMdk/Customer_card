@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!-- 
+home.html
+This web page shows the list of customers
+
+Author: Surya Prakash
+Contact: Suryamdk5@gmail.com
+
+created on: 2023-08-30
+ -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Customer Details</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" >
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+					<!-- Navbar Section -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+        <img src="" height="30" class="d-inline-block align-top" alt="Company Logo">
+    </a>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Add User</a></li>
+    </ul>
+</nav>
+
+				<!-- h1 section -->
+<div class="head1">
+	<h2>OUR CUSTOMERS</h2>	
+</div>
+
+			<!-- Filter section -->
+<div class="text-center mb-4">
+	<form th:action="@{/home}" method="get" id="filterForm">
+		<button type="button" class="button btn-success" id="showAllButton" onclick="showAll()">Show All</button>
+		<input type="text" name="filter">
+		<button type="submit" class="button btn-primary">Search</button>
+	</form>
+</div>
+
+					<!-- Cards section -->
+<div class="container" >
+    <div class="row">
+        						<!-- User Cards -->
+        <div class="col-sm-6 col-md-3 mb-3" th:each="user : ${users}" style="width: 18rem;">
+            <div class="card" >
+                <img  class="card-img-top img-fluid" th:src="${user.userprofileimg ?: 'https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=6&m=1223671392&s=612x612&w=0&h=NGxdexflb9EyQchqjQP0m6wYucJBYLfu46KCLNMHZYM='}" alt="User Image">
+                <div class="card-body">
+                    <h5 class="card-title " th:text="${user.username}">User Name</h5>
+                    <p class="card-text card-item card-address" th:text="${user.useraddress}">Address</p>
+                    <p class="card-text card-item card-phone" th:if="${user.userphone}" th:each="phonenumber : ${#strings.arraySplit(user.userphone,',')}">
+    					<a class="card-text card-item" th:text="${phonenumber}" th:href="'tel:'+${phonenumber}"></a>
+   					</p>
+                    <a th:href="'mailto:'+${user.usermail}" class="card-text card-item card-email" th:text="${user.usermail}"></a>
+                	<p class="card-text card-item" th:text="${user.dateupdated}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+	function showAll(){
+		document.getElementById("filterForm").querySelector("input[name='filter']").value = "";
+		document.getElementById("filterForm").submit();
+	}
+</script>
+</body>
+</html>
